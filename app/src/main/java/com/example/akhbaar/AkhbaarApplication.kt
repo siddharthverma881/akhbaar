@@ -4,7 +4,6 @@ import android.app.Application
 import com.example.akhbaar.di.component.ApplicationComponent
 import com.example.akhbaar.di.component.DaggerApplicationComponent
 import com.example.akhbaar.di.module.ApplicationModule
-//import com.example.akhbaar.di.DaggerApplicationComponent
 
 class AkhbaarApplication: Application() {
 
@@ -20,6 +19,6 @@ class AkhbaarApplication: Application() {
             .builder()
             .applicationModule(ApplicationModule(this))
             .build()
-//        application.inject(this)
+        application.inject(this)
     }
 }
