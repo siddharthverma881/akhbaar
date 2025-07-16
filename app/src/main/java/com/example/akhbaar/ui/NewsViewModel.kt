@@ -22,8 +22,8 @@ class NewsViewModel(private val repository: NewsRepository): ViewModel() {
         fetchNews()
     }
 
-    fun fetchNews(){
-        Log.e("NewsViewModel","Fetching News----------------")
+    private fun fetchNews(){
+        _uiState.value = UiState.Loading
         viewModelScope.launch {
             repository.getHeadLines()
                 .catch {
@@ -31,7 +31,6 @@ class NewsViewModel(private val repository: NewsRepository): ViewModel() {
                     _uiState.value = UiState.Error(it.message?: "")
                 }
                 .collect{
-                    Log.e("NewsViewModel","Got Data----------------")
                     _uiState.value = UiState.Success(it)
                 }
         }
